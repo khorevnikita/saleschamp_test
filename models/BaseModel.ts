@@ -82,7 +82,12 @@ export default class BaseModel implements IModel {
     }
 
     static async findById(id) {
-        var o_id = new MongoDB.ObjectID(id);
+        let o_id;
+        try {
+            o_id = new MongoDB.ObjectID(id);
+        } catch (e) {
+            return null;
+        }
         const collection = await Database.getCollection(this.getCollectionName());
         let row = await collection.findOne({
             _id: o_id

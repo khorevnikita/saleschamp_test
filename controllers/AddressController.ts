@@ -41,7 +41,9 @@ export default class AddressController extends Controller {
         }
         let address = await Address.findById(req.params.id);
         if (!address) {
-            return res.json(404);
+            return res.status(404).json({
+                'msg': 'address not found'
+            });
         }
         address = address.fill(req.body);
         address = await address.save();

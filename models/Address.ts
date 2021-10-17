@@ -2,6 +2,8 @@ import Model from "./BaseModel"
 
 export default class Address extends Model {
 
+    readonly attributes: string[] = ['_id','id', 'country', 'city', 'street', 'postalCode', 'number', 'numberAddition', 'status', 'name', 'email'];
+
     id: string;
     country: string;
     city: string;
@@ -9,18 +11,13 @@ export default class Address extends Model {
     postalCode: string;
     number: bigint;
     numberAddition: string;
-    createdAt: string;
-    updatedAt: string;
     status: string;
     name: string;
     email: string;
 
-    // todo make only one var
-    protected collection = "addresses"
-    protected static collection = "addresses"
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
 
 

@@ -2,7 +2,9 @@ import Model from "./BaseModel"
 
 export default class Address extends Model {
 
-    readonly attributes: string[] = ['_id','id', 'country', 'city', 'street', 'postalCode', 'number', 'numberAddition', 'status', 'name', 'email'];
+    readonly attributes: string[] = ['_id', 'country', 'city', 'street', 'postalCode', 'number', 'numberAddition', 'status', 'name', 'email'];
+
+    static allowedStatuses: string[] = ['not at home', 'not interested', 'interested'];
 
     id: string;
     country: string;

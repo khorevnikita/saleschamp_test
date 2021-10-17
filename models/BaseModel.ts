@@ -14,10 +14,6 @@ export default class BaseModel implements IModel {
 
     constructor() {
         // todo: check if property is exists in model
-        if (this.useTimestamps) {
-            this.attributes.concat(['createdAt', 'updatedAt'])
-        }
-
     }
 
     static buildCollectionName(str) {
@@ -77,6 +73,7 @@ export default class BaseModel implements IModel {
         } else {
             if (this.isUsingTimestamps()) {
                 this['createdAt'] = moment().format(this.getTimestampsFormat());
+                this['updatedAt'] = moment().format(this.getTimestampsFormat());
             }
             const result = await collection.insertOne(this.toJson());
             this['_id'] = result.insertedId;
@@ -120,7 +117,12 @@ export default class BaseModel implements IModel {
 
     toJson() {
         let json = {}
-        for (var k of this.attributes) {
+        let attrs = this.attributes;
+        if (this.useTimestamps) {
+            attrs = attrs.concat(['createdAt', 'updatedAt'])
+        }
+
+        for (var k of attrs) {
             json[k] = this[k];
         }
         return json;

@@ -5,6 +5,8 @@
  */
 
 var app = require('../app');
+//import * as app from '../app';
+
 var debug = require('debug')('saleschampaddress:server');
 var http = require('http');
 

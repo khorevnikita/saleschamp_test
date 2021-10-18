@@ -1,9 +1,18 @@
+//import createError from 'http-errors';
 var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+import express from 'express';
+//var express = require('express');
+import path from 'path'
+//var path = require('path');
+//import cookieParser from 'cookie-parser';
 var cookieParser = require('cookie-parser');
+//import logger from 'morgan';
 var logger = require('morgan');
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
+import bodyParser from "body-parser";
+//require('dotenv').config()
+//var http = require('http');
 
 var app = express();
 
@@ -12,7 +21,7 @@ var app = express();
 app.set('view engine', 'pug');
 
 //const MongoClient    = require('mongodb').MongoClient;
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,8 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+//app.use('/', require('./routes/index'));
+//app.use('/users', require('./routes/users'));
 app.use('/addresses', require('./routes/addresses'))
 
 // catch 404 and forward to error handler
@@ -40,6 +49,5 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-app.listen(process.env.PORT || 3000);
-console.log("LISTEN ", process.env.PORT || 3000)
+
 module.exports = app;

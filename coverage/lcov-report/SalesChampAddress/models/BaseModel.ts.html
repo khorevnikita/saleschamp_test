@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">3.44% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/58</span>
+                <span class='fraction'>4/60</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">3.44% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/58</span>
+                <span class='fraction'>4/60</span>
             </div>
         
             
@@ -192,14 +192,14 @@
 <a name='L133'></a><a href='#L133'>133</a>
 <a name='L134'></a><a href='#L134'>134</a>
 <a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L136'></a><a href='#L136'>136</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -336,16 +336,16 @@ import IModel from "../interfaces/IModel";
 &nbsp;
 export default class BaseModel implements IModel {
 &nbsp;
-    protected useTimestamps: boolean = <span class="cstat-no" title="statement not covered" >true;</span>
-    protected timestampsFormat: string = <span class="cstat-no" title="statement not covered" >"YYYY-MM-DD HH:mm:ss";</span>
+    protected <span class="cstat-no" title="statement not covered" >useTimestamps: boolean = true;</span>
+    protected <span class="cstat-no" title="statement not covered" >timestampsFormat: string = "YYYY-MM-DD HH:mm:ss";</span>
 &nbsp;
-    readonly attributes: string[] = <span class="cstat-no" title="statement not covered" >['_id'];</span>
+    readonly <span class="cstat-no" title="statement not covered" >attributes: string[] = ['_id'];</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    co</span>nstructor() {
+<span class="fstat-no" title="function not covered" >    constructor() {</span>
         // todo: check if property is exists in model
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic buildCollectionName(str: string): string {
+<span class="fstat-no" title="function not covered" >    static </span>buildCollectionName(str: string): string {
         let plural = <span class="cstat-no" title="statement not covered" >"s";</span>
         let modelName = <span class="cstat-no" title="statement not covered" >str.toLowerCase();</span>
 <span class="cstat-no" title="statement not covered" >        if (modelName.charAt(modelName.length - 1) === 's') {</span>
@@ -354,31 +354,31 @@ export default class BaseModel implements IModel {
 <span class="cstat-no" title="statement not covered" >        return `${modelName}${plural}`</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    ge</span>tCollectionName(): string {
+<span class="fstat-no" title="function not covered" >    getCollectionName(</span>): string {
 <span class="cstat-no" title="statement not covered" >        return BaseModel.buildCollectionName(this.constructor.name);</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic getCollectionName(): string {
+<span class="fstat-no" title="function not covered" >    static </span>getCollectionName(): string {
 <span class="cstat-no" title="statement not covered" >        return this.buildCollectionName(this.name)</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    is</span>UsingTimestamps(): boolean {
+<span class="fstat-no" title="function not covered" >    isUsingTimestamps(</span>): boolean {
 <span class="cstat-no" title="statement not covered" >        return this.useTimestamps;</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    ge</span>tTimestampsFormat(): string {
+<span class="fstat-no" title="function not covered" >    getTimestampsFormat(</span>): string {
 <span class="cstat-no" title="statement not covered" >        return this.timestampsFormat;</span>
     }
 &nbsp;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    pr</span>otected initConnection() {
+    protected <span class="fstat-no" title="function not covered" >initConnection(</span>) {
 <span class="cstat-no" title="statement not covered" >        return Database.getCollection(this.getCollectionName());</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async findAll(condition = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span> limit: number = <span class="branch-0 cbranch-no" title="branch not covered" >30,</span> toJson: boolean = <span class="branch-0 cbranch-no" title="branch not covered" >false)</span> {
+<span class="fstat-no" title="function not covered" >    static </span>async findAll(condition = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span> limit: number = <span class="branch-0 cbranch-no" title="branch not covered" >30,</span> toJson: boolean = <span class="branch-0 cbranch-no" title="branch not covered" >false)</span> {
         const collection = <span class="cstat-no" title="statement not covered" >await Database.getCollection(this.getCollectionName());</span>
         let rows = <span class="cstat-no" title="statement not covered" >await collection.find(condition).limit(limit).toArray();</span>
-<span class="cstat-no" title="statement not covered" >        return rows.map(<span class="fstat-no" title="function not covered" >ro</span>w =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return rows.map(<span class="fstat-no" title="function not covered" >row </span>=&gt; {</span>
             let model = <span class="cstat-no" title="statement not covered" >new this().fill(row);</span>
 <span class="cstat-no" title="statement not covered" >            if (toJson) {</span>
 <span class="cstat-no" title="statement not covered" >                model = model.toJson()</span>
@@ -388,7 +388,7 @@ export default class BaseModel implements IModel {
 &nbsp;
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    as</span>ync save() {
+    async <span class="fstat-no" title="function not covered" >save(</span>) {
         const collection = <span class="cstat-no" title="statement not covered" >await this.initConnection();</span>
 <span class="cstat-no" title="statement not covered" >        if (this['_id']) {</span>
 <span class="cstat-no" title="statement not covered" >            if (this.isUsingTimestamps()) {</span>
@@ -410,7 +410,7 @@ export default class BaseModel implements IModel {
 <span class="cstat-no" title="statement not covered" >        return this;</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async findById(id: string) {
+<span class="fstat-no" title="function not covered" >    static </span>async findById(id: string) {
         let o_id;
 <span class="cstat-no" title="statement not covered" >        try {</span>
 <span class="cstat-no" title="statement not covered" >            o_id = new MongoDB.ObjectID(id);</span>
@@ -427,7 +427,7 @@ export default class BaseModel implements IModel {
 <span class="cstat-no" title="statement not covered" >        return new this().fill(row)</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async findOne(condition = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> {
+<span class="fstat-no" title="function not covered" >    static </span>async findOne(condition = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> {
         const collection = <span class="cstat-no" title="statement not covered" >await Database.getCollection(this.getCollectionName());</span>
         let row = <span class="cstat-no" title="statement not covered" >await collection.findOne(condition);</span>
 <span class="cstat-no" title="statement not covered" >        if (!row) {</span>
@@ -437,7 +437,7 @@ export default class BaseModel implements IModel {
 <span class="cstat-no" title="statement not covered" >        return new this().fill(row)</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    as</span>ync destroy() {
+    async <span class="fstat-no" title="function not covered" >destroy(</span>) {
         const collection = <span class="cstat-no" title="statement not covered" >await Database.getCollection(this.getCollectionName());</span>
         const res = <span class="cstat-no" title="statement not covered" >collection.deleteOne({</span>
             _id: this['_id']
@@ -445,11 +445,11 @@ export default class BaseModel implements IModel {
 <span class="cstat-no" title="statement not covered" >        return res.deletedCount &gt; 0;</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    fi</span>ll(props) {
+<span class="fstat-no" title="function not covered" >    fill(</span>props) {
 <span class="cstat-no" title="statement not covered" >        return Object.assign(this, props);</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    to</span>Json() {
+<span class="fstat-no" title="function not covered" >    toJson(</span>) {
         let json = <span class="cstat-no" title="statement not covered" >{}</span>
         let attrs = <span class="cstat-no" title="statement not covered" >this.attributes;</span>
 <span class="cstat-no" title="statement not covered" >        if (this.useTimestamps) {</span>
@@ -469,7 +469,7 @@ export default class BaseModel implements IModel {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Oct 18 2021 08:01:55 GMT+0300 (Moscow Standard Time)
+                at Mon Oct 18 2021 10:10:26 GMT+0300 (Moscow Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

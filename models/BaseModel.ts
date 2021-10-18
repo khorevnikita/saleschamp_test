@@ -16,7 +16,7 @@ export default class BaseModel implements IModel {
         // todo: check if property is exists in model
     }
 
-    static buildCollectionName(str) {
+    static buildCollectionName(str: string): string {
         let plural = "s";
         let modelName = str.toLowerCase();
         if (modelName.charAt(modelName.length - 1) === 's') {
@@ -46,7 +46,7 @@ export default class BaseModel implements IModel {
         return Database.getCollection(this.getCollectionName());
     }
 
-    static async findAll(condition = {}, limit = 30, toJson = false) {
+    static async findAll(condition = {}, limit: number = 30, toJson: boolean = false) {
         const collection = await Database.getCollection(this.getCollectionName());
         let rows = await collection.find(condition).limit(limit).toArray();
         return rows.map(row => {
@@ -81,7 +81,7 @@ export default class BaseModel implements IModel {
         return this;
     }
 
-    static async findById(id) {
+    static async findById(id: string) {
         let o_id;
         try {
             o_id = new MongoDB.ObjectID(id);

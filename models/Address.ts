@@ -13,7 +13,7 @@ export default class Address extends Model {
     city: string;
     street: string;
     postalCode: string;
-    number: bigint;
+    number: number;
     numberAddition: string;
     status: string;
     name: string;

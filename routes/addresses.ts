@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 import BaseMiddleware from "../middlewares/BaseMiddleware"
 import Controller from "../controllers/AddressController"
+//const BaseMiddleware = require("../middlewares/BaseMiddleware")
+//const Controller = require("../controllers/AddressController")
 let validator = require("../validators/AddressValidator")
 
 

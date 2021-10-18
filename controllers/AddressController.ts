@@ -62,7 +62,7 @@ export default class AddressController extends Controller {
         if (!address) {
             return res.status(404).json("The address is not found");
         }
-        // 409 code is for softdeletes. todo soft deletes
+        // 409 code is for soft deletes. todo soft deletes
         await address.destroy()
         res.status(204);
     }

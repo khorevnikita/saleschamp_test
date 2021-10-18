@@ -4,6 +4,10 @@
     "target": "es5",
     "sourceMap": true
   },
+  "types": [
+    "jest",
+    "node"
+  ],
   "exclude": [
     "node_modules"
   ]

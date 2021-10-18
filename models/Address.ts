@@ -6,6 +6,8 @@ export default class Address extends Model {
 
     static allowedStatuses: string[] = ['not at home', 'not interested', 'interested'];
 
+    static updatable: string[] = ['status', 'name', 'email']
+
     id: string;
     country: string;
     city: string;
@@ -23,7 +25,12 @@ export default class Address extends Model {
     }
 
 
-    static getList() {
-
+    static getUpdatableData(data) {
+        return Object.keys(data)
+            .filter(key => this.updatable.includes(key))
+            .reduce((obj, key) => {
+                obj[key] = data[key];
+                return obj;
+            }, {});
     }
 }

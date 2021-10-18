@@ -127,8 +127,8 @@ export default class BaseModel implements IModel {
             attrs = attrs.concat(['createdAt', 'updatedAt'])
         }
 
-        for (var k of attrs) {
-            json[k] = this[k];
+        for (let k of attrs) {
+            json[k] = typeof this[k] !== 'undefined' ? this[k] : null;
         }
         return json;
     }

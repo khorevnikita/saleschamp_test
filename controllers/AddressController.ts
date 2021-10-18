@@ -27,7 +27,9 @@ export default class AddressController extends Controller {
     static async show(req, res) {
         const address = await Address.findById(req.params.id)
         if (!address) {
-            return res.json(404)
+            return res.status(404).json({
+                msg: "Address not found"
+            })
         }
         res.json({
             address: address.toJson()
@@ -45,22 +47,24 @@ export default class AddressController extends Controller {
                 'msg': 'address not found'
             });
         }
-        address = address.fill(req.body);
+
+        address = address.fill(Address.getUpdatableData(req.body));
         address = await address.save();
 
-        console.log('after', address.toJson())
         res.json({
             address: address.toJson()
-        }, 204)
+        })
 
     }
 
     static async destroy(req, res) {
         let address = await Address.findById(req.params.id);
+        if (!address) {
+            return res.status(404).json("The address is not found");
+        }
+        // 409 code is for softdeletes. todo soft deletes
         await address.destroy()
-        res.json({
-            status: "ok"
-        })
+        res.status(204);
     }
 
 }

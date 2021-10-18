@@ -1,27 +1,18 @@
-//import createError from 'http-errors';
-var createError = require('http-errors');
 import express from 'express';
-//var express = require('express');
 import path from 'path'
-//var path = require('path');
-//import cookieParser from 'cookie-parser';
-var cookieParser = require('cookie-parser');
-//import logger from 'morgan';
-var logger = require('morgan');
 import dotenv from 'dotenv';
-dotenv.config();
 import bodyParser from "body-parser";
-//require('dotenv').config()
-//var http = require('http');
+dotenv.config();
+
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var createError = require('http-errors');
 
 var app = express();
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//const MongoClient    = require('mongodb').MongoClient;
-//const bodyParser = require('body-parser');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,8 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 
-//app.use('/', require('./routes/index'));
-//app.use('/users', require('./routes/users'));
+/* DEFINE RUTES */
 app.use('/addresses', require('./routes/addresses'))
 
 // catch 404 and forward to error handler

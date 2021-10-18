@@ -7,14 +7,22 @@ import IModel from "../interfaces/IModel";
 
 export default class BaseModel implements IModel {
 
+    /* Timestamp settings for model */
     protected useTimestamps: boolean = true;
     protected timestampsFormat: string = "YYYY-MM-DD HH:mm:ss";
 
+    /* List of model attributes */
     readonly attributes: string[] = ['_id'];
 
     constructor() {
         // todo: check if property is exists in model
     }
+
+    /**
+     * Build collection name from model name
+     * @param str
+     * @return str
+     */
 
     static buildCollectionName(str: string): string {
         let plural = "s";
@@ -25,9 +33,15 @@ export default class BaseModel implements IModel {
         return `${modelName}${plural}`
     }
 
+    /**
+     *  Get collection name
+     */
+
     getCollectionName(): string {
         return BaseModel.buildCollectionName(this.constructor.name);
     }
+
+    /* todo: Refactoring. Only 1 method should be */
 
     static getCollectionName(): string {
         return this.buildCollectionName(this.name)
@@ -41,10 +55,23 @@ export default class BaseModel implements IModel {
         return this.timestampsFormat;
     }
 
+    /**
+     * Get DB table (collection) for model
+     * @protected
+     */
 
     protected initConnection() {
         return Database.getCollection(this.getCollectionName());
     }
+
+    /**
+     * Get multiple models from DB
+     * @param condition
+     * @param limit
+     * @param toJson
+     *
+     * @return array
+     */
 
     static async findAll(condition = {}, limit: number = 30, toJson: boolean = false) {
         const collection = await Database.getCollection(this.getCollectionName());
@@ -58,6 +85,10 @@ export default class BaseModel implements IModel {
         })
 
     }
+
+    /**
+     * Upsert model into DB
+     */
 
     async save() {
         const collection = await this.initConnection();
@@ -81,6 +112,10 @@ export default class BaseModel implements IModel {
         return this;
     }
 
+    /**
+     * Find model by Primary Key
+     * @param id
+     */
     static async findById(id: string) {
         let o_id;
         try {
@@ -98,6 +133,11 @@ export default class BaseModel implements IModel {
         return new this().fill(row)
     }
 
+    /**
+     * Find model by any condition
+     * @param condition
+     */
+
     static async findOne(condition = {}) {
         const collection = await Database.getCollection(this.getCollectionName());
         let row = await collection.findOne(condition);
@@ -108,6 +148,9 @@ export default class BaseModel implements IModel {
         return new this().fill(row)
     }
 
+    /**
+     * Remove model from DB
+     */
     async destroy() {
         const collection = await Database.getCollection(this.getCollectionName());
         const res = collection.deleteOne({
@@ -116,10 +159,18 @@ export default class BaseModel implements IModel {
         return res.deletedCount > 0;
     }
 
+    /**
+     * Fill model`s attributes
+     * @param props
+     */
+
     fill(props) {
         return Object.assign(this, props);
     }
 
+    /**
+     * Print model
+     */
     toJson() {
         let json = {}
         let attrs = this.attributes;

@@ -2,7 +2,9 @@ import Controller from "./Controller";
 import Address from "../models/Address";
 
 export default class AddressController extends Controller {
-
+    /**
+     * List of all addresses
+     */
     static async list(req, res) {
         const addresses = await Address.findAll({}, 30, true);
         res.json({
@@ -11,6 +13,9 @@ export default class AddressController extends Controller {
 
     }
 
+    /**
+     * Create a new address
+     */
     static async create(req, res) {
         const errors = super.validate(req);
         if (!errors.isEmpty()) {
@@ -24,6 +29,12 @@ export default class AddressController extends Controller {
         }, 201)
     }
 
+    /**
+     * Get the address by ID
+     *
+     * @param req
+     * @param res
+     */
     static async show(req, res) {
         const address = await Address.findById(req.params.id)
         if (!address) {
@@ -35,6 +46,10 @@ export default class AddressController extends Controller {
             address: address.toJson()
         })
     }
+
+    /**
+     * Update the address
+     */
 
     static async update(req, res) {
         const errors = super.validate(req);
@@ -57,6 +72,9 @@ export default class AddressController extends Controller {
 
     }
 
+    /**
+     * Delete the address
+     */
     static async destroy(req, res) {
         let address = await Address.findById(req.params.id);
         if (!address) {
